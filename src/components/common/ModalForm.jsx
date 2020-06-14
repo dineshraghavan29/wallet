@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import ModalBody from "react-bootstrap/ModalBody";
 import ModalHeader from "react-bootstrap/ModalHeader";
@@ -31,7 +31,7 @@ function ModalForm({ open, handleClose, title, handleSubmit }) {
           </ModalTitle>
         </ModalHeader>
         <ModalBody>
-          <label htmlFor="description">Description</label>
+          <label htmlFor="description">Description *</label>
           <input
             type="text"
             className="form-control"
@@ -39,6 +39,7 @@ function ModalForm({ open, handleClose, title, handleSubmit }) {
             size="50"
             maxLength="50"
             onChange={(e) => setDescription(e.target.value)}
+            required
           />
           <label htmlFor="amount">Amount *</label>
           <input
@@ -68,12 +69,7 @@ function ModalForm({ open, handleClose, title, handleSubmit }) {
             type="button"
             onClick={handleClose}
           ></Button>
-          <Button
-            label="Submit"
-            color="success"
-            type="submit"
-            onClick={mapExpense}
-          ></Button>
+          <Button label="Submit" color="success" type="submit"></Button>
         </ModalFooter>
       </form>
     </Modal>
