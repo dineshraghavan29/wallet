@@ -48,7 +48,8 @@ body {
 
 .btn-success:hover,
 .btn-success:focus,
-.btn-success:active {
+.btn-success:active,
+.show > .btn-success.dropdown-toggle {
   background-color: #1eb980;
   border: 1px solid #1eb980;
 }
@@ -64,6 +65,10 @@ body {
   background-color: #ff6859;
   border: 1px solid #ff6859;
 }
+
+/* .btn-success:not(:disabled):not(.disabled):active, 
+.btn-success:not(:disabled):not(.disabled).active, 
+.show > .btn-success.dropdown-toggle */
 
 .modal-content {
   background-color: #49535a;
@@ -90,6 +95,20 @@ body {
   color: #ffffff;
 }
 
+.dropdown-menu {
+  background-color: #3e464c;
+  color: #ffffff;
+}
+
+.dropdown-item {
+  color: #ffffff;
+  font-weight: 100;
+}
+
+.width-40 {
+  width: 40%;
+}
+
 .title {
   color: #ffffff;
 }
@@ -97,7 +116,8 @@ body {
 .expense-list {
   margin: 10px 0px 10px 0px;
   height: 300px;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .font-green {
@@ -110,4 +130,16 @@ body {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.disable-link {
+  text-decoration: none !important;
+}
+
+.min-width-120 {
+  min-width: 120px;
+}
+
+.dropdown > button {
+  min-width: 120px;
 }

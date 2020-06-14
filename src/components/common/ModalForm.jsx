@@ -4,15 +4,16 @@ import ModalBody from "react-bootstrap/ModalBody";
 import ModalHeader from "react-bootstrap/ModalHeader";
 import ModalFooter from "react-bootstrap/ModalFooter";
 import ModalTitle from "react-bootstrap/ModalTitle";
-import Button from "./Button";
 import moment from "moment";
+import Button from "./Button";
 
-function AppForm({ open, handleClose, title, handleSubmit }) {
+function ModalForm({ open, handleClose, title, handleSubmit }) {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState(moment().format("YYYY-MM-DD"));
 
-  const mapExpense = () => {
+  const mapExpense = (e) => {
+    e.preventDefault();
     const expense = {
       description,
       amount,
@@ -23,7 +24,7 @@ function AppForm({ open, handleClose, title, handleSubmit }) {
 
   return (
     <Modal show={open} onHide={handleClose}>
-      <form>
+      <form onSubmit={mapExpense}>
         <ModalHeader>
           <ModalTitle>
             <h3>{title}</h3>
@@ -35,19 +36,24 @@ function AppForm({ open, handleClose, title, handleSubmit }) {
             type="text"
             className="form-control"
             id="description"
+            size="50"
+            maxLength="50"
             onChange={(e) => setDescription(e.target.value)}
           />
-          <label htmlFor="amount">Amount</label>
+          <label htmlFor="amount">Amount *</label>
           <input
             type="number"
             className="form-control"
             id="amount"
+            size="50"
+            maxLength="50"
             onChange={(e) => setAmount(e.target.value)}
+            required
           />
           <label htmlFor="date">Date</label>
           <input
             type="date"
-            className="form-control"
+            className="form-control width-40"
             id="date"
             value={date}
             onChange={(e) =>
@@ -56,12 +62,22 @@ function AppForm({ open, handleClose, title, handleSubmit }) {
           />
         </ModalBody>
         <ModalFooter>
-          <Button label="Cancel" color="danger" onClick={handleClose}></Button>
-          <Button label="Submit" color="success" onClick={mapExpense}></Button>
+          <Button
+            label="Cancel"
+            color="danger"
+            type="button"
+            onClick={handleClose}
+          ></Button>
+          <Button
+            label="Submit"
+            color="success"
+            type="submit"
+            onClick={mapExpense}
+          ></Button>
         </ModalFooter>
       </form>
     </Modal>
   );
 }
 
-export default AppForm;
+export default ModalForm;

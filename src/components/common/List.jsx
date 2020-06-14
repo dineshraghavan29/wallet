@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 
 function List({ id, amount, description, date, type, onDelete }) {
-  const amountStyle = type == "income" ? "font-green" : "font-red";
+  const amountStyle = type === "income" ? "font-green" : "font-red";
   return (
     <li className="list-group-item">
       <div className="container">
@@ -19,7 +19,7 @@ function List({ id, amount, description, date, type, onDelete }) {
               className="material-icons font-red cursor-pointer"
               onClick={() => onDelete({ id, type, amount })}
             >
-              delete
+              delete_outline
             </span>
           </div>
         </div>

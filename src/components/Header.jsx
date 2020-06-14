@@ -1,6 +1,7 @@
 import React from "react";
+import DropDownList from "./common/DropDownList";
 
-function Header({ balance, totalIncome, totalSpending }) {
+function Header({ balance, totalIncome, totalSpending, filter, onSelect }) {
   return (
     <div className="card header">
       <div className="card-body">
@@ -17,6 +18,15 @@ function Header({ balance, totalIncome, totalSpending }) {
           <div className="col">
             Spendings <br />
             <h3 className="font-red">{totalSpending}</h3>
+          </div>
+          <div className="col">
+            Filter
+            <br />
+            <DropDownList
+              selectedItem={filter}
+              itemList={["All", "Incomes", "Spendings"]}
+              onSelect={onSelect}
+            />
           </div>
         </div>
       </div>

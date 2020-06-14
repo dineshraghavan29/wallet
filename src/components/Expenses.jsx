@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import ExpenseList from "./ExpenseList";
-import Button from "./common/Button";
-import AppForm from "./common/AppForm";
+import ModalForm from "./common/ModalForm";
+import Footer from "./Footer";
+import { constructExpneseObj } from "./utils/expenseUtil";
 
 function Expenses(props) {
   const [income, setIncome] = useState([]);
@@ -12,10 +13,9 @@ function Expenses(props) {
   const [balance, setBalance] = useState(0);
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
+  const [filter, setFilter] = useState("All");
 
-  useEffect(() => {
-    console.log(balance);
-  }, [income, spending]);
+  useEffect(() => {}, [income, spending, filter]);
 
   const handleClickOpen = (label) => {
     label.indexOf("income") >= 0
@@ -28,14 +28,18 @@ function Expenses(props) {
     setOpen(false);
   };
 
+  const handleFilter = (filter) => {
+    setFilter(filter);
+  };
+
   const handleDelete = ({ id, type, amount }) => {
-    if (type == "income") {
+    if (type === "income") {
       const filteredIncome = income.filter((inc) => inc.id !== id);
       setIncome(filteredIncome);
       setTotalIncome((totalIncome) => parseInt(totalIncome) - parseInt(amount));
       setBalance((balance) => balance - parseInt(amount));
     }
-    if (type == "spending") {
+    if (type === "spending") {
       const filteredSpending = spending.filter((inc) => inc.id !== id);
       setSpending(filteredSpending);
       setTotalSpending(
@@ -46,7 +50,7 @@ function Expenses(props) {
   };
 
   const handleSubmit = (values) => {
-    const expense = createObject(values);
+    const expense = constructExpneseObj(values, title);
     if (title.toLocaleLowerCase().indexOf("income") >= 0) {
       setIncome((income) => [...income, expense]);
       setTotalIncome(
@@ -64,27 +68,6 @@ function Expenses(props) {
     setOpen(false);
   };
 
-  function createObject(values) {
-    let id = 0;
-    let type = "";
-    if (title.toLocaleLowerCase().indexOf("income") >= 0) {
-      id = Math.floor(Math.random() * 100);
-      type = "income";
-    }
-    if (title.toLocaleLowerCase().indexOf("spending") >= 0) {
-      id = Math.floor(Math.random() * 1000);
-      type = "spending";
-    }
-    const expense = {
-      id: id,
-      description: values.description,
-      amount: values.amount,
-      date: values.date,
-      type: type,
-    };
-    return expense;
-  }
-
   return (
     <div className="card">
       <div className="card-body">
@@ -92,32 +75,17 @@ function Expenses(props) {
           balance={balance}
           totalIncome={totalIncome}
           totalSpending={totalSpending}
+          filter={filter}
+          onSelect={handleFilter}
         ></Header>
         <ExpenseList
           incomes={income}
           spendings={spending}
+          filter={filter}
           onDelete={handleDelete}
         />
-        <div className="container">
-          <div className="row align-items-center justify-content-center">
-            <div className="col-4">
-              <Button
-                label="Add Income"
-                color="success"
-                onClick={() => handleClickOpen("income")}
-              />
-            </div>
-            <div className="col-4">
-              <Button
-                label="Add Spending"
-                color="danger"
-                onClick={() => handleClickOpen("spending")}
-              />
-            </div>
-          </div>
-        </div>
-
-        <AppForm
+        <Footer onclick={handleClickOpen}></Footer>
+        <ModalForm
           open={open}
           handleClose={handleClose}
           title={title}

@@ -1,18 +1,24 @@
 import React from "react";
+import { Route, Switch, Redirect, Link } from "react-router-dom";
 import Expenses from "./components/Expenses";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
-    <div className="containter">
+    <div className="containter-fluid">
       <div className="row justify-content-center">
-        <h1 className="title">Wallet</h1>
+        <Link to="/" className="disable-link">
+          <h1 className="title">Wallet</h1>
+        </Link>
       </div>
       <div className="row justify-content-center">
-        <div className="col-3"></div>
-        <div className="col-6">
-          <Expenses />
+        <div className="col col-lg-6 col-md-10 col-sm-10 col-auto">
+          <Switch>
+            <Route path="/" exact component={Expenses} />
+            <Route path="/not-found" component={NotFound}></Route>
+            <Redirect to="not-found"></Redirect>
+          </Switch>
         </div>
-        <div className="col-3"></div>
       </div>
     </div>
   );

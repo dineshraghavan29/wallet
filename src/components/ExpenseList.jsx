@@ -1,17 +1,9 @@
 import React from "react";
-import moment from "moment";
-import _ from "lodash";
 import List from "./common/List";
+import { filterItems } from "./utils/expenseUtil";
 
-function ExpenseList({ incomes, spendings, onDelete }) {
-  const items = incomes.concat(spendings);
-  const sortedItems = _.orderBy(
-    items,
-    function (item) {
-      return new moment(item.date);
-    },
-    ["desc"]
-  );
+function ExpenseList({ incomes, spendings, filter, onDelete }) {
+  const sortedItems = filterItems(incomes, spendings, filter);
   return (
     <div className="expense-list">
       <ul className="list-group">
