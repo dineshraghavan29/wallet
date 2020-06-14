@@ -98,8 +98,8 @@ function Expenses(props) {
           spendings={spending}
           onDelete={handleDelete}
         />
-        <div class="container">
-          <div className="row justify-content-center">
+        <div className="container">
+          <div className="row align-items-center justify-content-center">
             <div className="col-4">
               <Button
                 label="Add Income"

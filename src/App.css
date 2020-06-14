@@ -1,4 +1,113 @@
-.list-group.expenseList {
-  height: "400px";
-  overflow: "auto";
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 100 !important;
+  color: #ffffff;
+}
+
+h6 {
+  font-weight: 100 !important;
+  font-size: 0.8rem;
+  color: #ffffff;
+}
+
+body {
+  background-color: #3e464c;
+  font-weight: 100;
+  color: #ffffff;
+}
+
+.card {
+  background-color: #49535a;
+  border: 1px solid #ff6859;
+}
+
+.header {
+  background-color: #3e464c;
+  border: none;
+}
+
+.list-group-item {
+  background-color: #3e464c;
+  border: none;
+  margin-top: 5px;
+  padding: 0.25rem 0.25rem;
+}
+
+.btn {
+  font-weight: 100;
+}
+
+.btn-success {
+  background-color: #3e464c;
+  border: 1px solid #1eb980;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active {
+  background-color: #1eb980;
+  border: 1px solid #1eb980;
+}
+
+.btn-danger {
+  background-color: #3e464c;
+  border: 1px solid #ff6859;
+}
+
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger:active {
+  background-color: #ff6859;
+  border: 1px solid #ff6859;
+}
+
+.modal-content {
+  background-color: #49535a;
+}
+
+.modal-header {
+  border-bottom: none;
+  background-color: #3e464c;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+.form-control {
+  background-color: #3e464c;
+  color: #ffffff;
+  border: 1px solid #ff6859;
+  font-weight: 100;
+}
+
+.form-control:focus {
+  background-color: #3e464c;
+  color: #ffffff;
+}
+
+.title {
+  color: #ffffff;
+}
+
+.expense-list {
+  margin: 10px 0px 10px 0px;
+  height: 300px;
+  overflow: auto;
+}
+
+.font-green {
+  color: #76ff03;
+}
+
+.font-red {
+  color: #ff6859;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

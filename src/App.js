@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="containter">
       <div className="row justify-content-center">
-        <h1>Wallet</h1>
+        <h1 className="title">Wallet</h1>
       </div>
       <div className="row justify-content-center">
         <div className="col-3"></div>

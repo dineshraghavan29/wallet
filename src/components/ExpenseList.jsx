@@ -13,8 +13,8 @@ function ExpenseList({ incomes, spendings, onDelete }) {
     ["desc"]
   );
   return (
-    <div>
-      <ul className="list-group" style={{ height: "300px", scroll: "auto" }}>
+    <div className="expense-list">
+      <ul className="list-group">
         {sortedItems.map((item) => {
           return <List key={item.id} {...item} onDelete={onDelete} />;
         })}

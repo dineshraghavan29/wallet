@@ -25,7 +25,9 @@ function AppForm({ open, handleClose, title, handleSubmit }) {
     <Modal show={open} onHide={handleClose}>
       <form>
         <ModalHeader>
-          <ModalTitle>{title}</ModalTitle>
+          <ModalTitle>
+            <h3>{title}</h3>
+          </ModalTitle>
         </ModalHeader>
         <ModalBody>
           <label htmlFor="description">Description</label>
@@ -54,8 +56,8 @@ function AppForm({ open, handleClose, title, handleSubmit }) {
           />
         </ModalBody>
         <ModalFooter>
-          <Button label="Cancel" color="light" onClick={handleClose}></Button>
-          <Button label="Submit" color="primary" onClick={mapExpense}></Button>
+          <Button label="Cancel" color="danger" onClick={handleClose}></Button>
+          <Button label="Submit" color="success" onClick={mapExpense}></Button>
         </ModalFooter>
       </form>
     </Modal>
