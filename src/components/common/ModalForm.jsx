@@ -19,11 +19,24 @@ function ModalForm({ open, handleClose, title, handleSubmit }) {
       amount,
       date,
     };
-    handleSubmit(expense);
+    const expenseObj = { ...expense };
+    resetModalValues();
+    handleSubmit(expenseObj);
+  };
+
+  const resetModalValues = () => {
+    setDescription("");
+    setAmount("");
+    setDate(moment().format("YYYY-MM-DD"));
+  };
+
+  const closeModal = () => {
+    resetModalValues();
+    handleClose();
   };
 
   return (
-    <Modal show={open} onHide={handleClose}>
+    <Modal show={open} onHide={closeModal}>
       <form onSubmit={mapExpense}>
         <ModalHeader>
           <ModalTitle>
@@ -67,7 +80,7 @@ function ModalForm({ open, handleClose, title, handleSubmit }) {
             label="Cancel"
             color="danger"
             type="button"
-            onClick={handleClose}
+            onClick={closeModal}
           ></Button>
           <Button label="Submit" color="success" type="submit"></Button>
         </ModalFooter>
