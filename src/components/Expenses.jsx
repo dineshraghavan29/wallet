@@ -5,12 +5,18 @@ import ModalForm from "./common/ModalForm";
 import Footer from "./Footer";
 import { constructExpneseObj } from "./utils/expenseUtil";
 
-function Expenses(props) {
-  const [income, setIncome] = useState([]);
-  const [spending, setSpending] = useState([]);
-  const [totalIncome, setTotalIncome] = useState(0);
-  const [totalSpending, setTotalSpending] = useState(0);
-  const [balance, setBalance] = useState(0);
+function Expenses({
+  incomes,
+  spendings,
+  totIncome,
+  totSpending,
+  initialbalance,
+}) {
+  const [income, setIncome] = useState(incomes);
+  const [spending, setSpending] = useState(spendings);
+  const [totalIncome, setTotalIncome] = useState(totIncome);
+  const [totalSpending, setTotalSpending] = useState(totSpending);
+  const [balance, setBalance] = useState(initialbalance);
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [filter, setFilter] = useState("All");
@@ -35,12 +41,14 @@ function Expenses(props) {
   const handleDelete = ({ id, type, amount }) => {
     if (type === "income") {
       const filteredIncome = income.filter((inc) => inc.id !== id);
+      localStorage.setItem("incomes", JSON.stringify(filteredIncome));
       setIncome(filteredIncome);
       setTotalIncome((totalIncome) => parseInt(totalIncome) - parseInt(amount));
       setBalance((balance) => balance - parseInt(amount));
     }
     if (type === "spending") {
       const filteredSpending = spending.filter((inc) => inc.id !== id);
+      localStorage.setItem("spendings", JSON.stringify(filteredSpending));
       setSpending(filteredSpending);
       setTotalSpending(
         (totalSpending) => parseInt(totalSpending) - parseInt(amount)
@@ -52,6 +60,7 @@ function Expenses(props) {
   const handleSubmit = (values) => {
     const expense = constructExpneseObj(values, title);
     if (title.toLocaleLowerCase().indexOf("income") >= 0) {
+      localStorage.setItem("incomes", JSON.stringify([...income, expense]));
       setIncome((income) => [...income, expense]);
       setTotalIncome(
         (totalIncome) => parseInt(totalIncome) + parseInt(expense.amount)
@@ -59,6 +68,7 @@ function Expenses(props) {
       setBalance((balance) => balance + parseInt(expense.amount));
     }
     if (title.toLocaleLowerCase().indexOf("spending") >= 0) {
+      localStorage.setItem("spendings", JSON.stringify([...spending, expense]));
       setSpending((spending) => [...spending, expense]);
       setTotalSpending(
         (totalSpending) => parseInt(totalSpending) + parseInt(expense.amount)

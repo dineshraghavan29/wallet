@@ -78,11 +78,11 @@ function ModalForm({ open, handleClose, title, handleSubmit }) {
         <ModalFooter>
           <Button
             label="Cancel"
-            color="danger"
+            color="light"
             type="button"
             onClick={closeModal}
           ></Button>
-          <Button label="Submit" color="success" type="submit"></Button>
+          <Button label="Submit" color="primary" type="submit"></Button>
         </ModalFooter>
       </form>
     </Modal>
