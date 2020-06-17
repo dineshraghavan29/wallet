@@ -7,10 +7,13 @@ function Header({ balance, totalIncome, totalSpending, filter, onSelect }) {
         <div className="row align-items-center">
           <div className="col">
             Balance
-            <br />
-            <h1> {balance} </h1> <br />
-            <span className="font-green">Income: {totalIncome}</span>
-            <span className="font-red"> Spendings: {totalSpending}</span>
+            <p>
+              <h1> {balance} </h1>
+            </p>
+            <p>
+              <span className="font-green">Income: {totalIncome}</span>
+              <span className="font-red"> Spendings: {totalSpending}</span>
+            </p>
           </div>
         </div>
       </div>

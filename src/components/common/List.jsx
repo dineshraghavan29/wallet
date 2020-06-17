@@ -16,7 +16,7 @@ function List({ id, amount, description, date, type, onDelete }) {
           <div className="col-7">{description}</div>
           <div className="col-1">
             <span
-              className="material-icons font-red cursor-pointer"
+              className="material-icons font-grey cursor-pointer"
               onClick={() => onDelete({ id, type, amount })}
             >
               delete_outline

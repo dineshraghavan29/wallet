@@ -3,7 +3,7 @@ import Button from "./common/Button";
 
 function Footer({ onclick }) {
   return (
-    <div className="container">
+    <div className="container footer">
       <div className="row align-items-center">
         <div className="col-6 d-flex justify-content-center">
           <Button

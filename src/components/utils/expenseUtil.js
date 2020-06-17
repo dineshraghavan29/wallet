@@ -1,9 +1,13 @@
 import moment from "moment";
 import _ from "lodash";
+import { v4 as uuidv4 } from "uuid";
 
 export function getInitialData(incomesData, spendingsData) {
   let incomes = localStorage.getItem("incomes");
   let spendings = localStorage.getItem("spendings");
+  let totIncome = 0;
+  let totSpending = 0;
+  let initialbalance = 0;
   if (
     incomes &&
     spendings &&
@@ -15,10 +19,6 @@ export function getInitialData(incomesData, spendingsData) {
     incomes = incomesData;
     spendings = spendingsData;
   }
-  let totIncome = 0;
-  let totSpending = 0;
-  let initialbalance = 0;
-
   incomes.map((income) => (totIncome += parseInt(income.amount)));
   spendings.map((spending) => (totSpending += parseInt(spending.amount)));
   initialbalance = totIncome - totSpending;
@@ -28,16 +28,10 @@ export function getInitialData(incomesData, spendingsData) {
 }
 
 export function constructExpneseObj(values, title) {
-  let id = 0;
+  let id = uuidv4();
   let type = "";
-  if (title.toLocaleLowerCase().indexOf("income") >= 0) {
-    id = Math.floor(Math.random() * 100);
-    type = "income";
-  }
-  if (title.toLocaleLowerCase().indexOf("spending") >= 0) {
-    id = Math.floor(Math.random() * 1000);
-    type = "spending";
-  }
+  if (title.toLocaleLowerCase().indexOf("income") >= 0) type = "income";
+  if (title.toLocaleLowerCase().indexOf("spending") >= 0) type = "spending";
   const expense = {
     id: id,
     description: values.description,
